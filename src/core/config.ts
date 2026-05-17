@@ -1,4 +1,4 @@
 export interface SDKConfig{
     apiKey:string;
-    //baseUrl?:string;
+    baseUrl?:string;
 }
