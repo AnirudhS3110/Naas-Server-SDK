@@ -1,4 +1,4 @@
-````md id="rm1"
+
 # NaaS Server SDK
 
 Official Node.js SDK for interacting with the NaaS (Notifications as a Service) platform.
@@ -19,7 +19,6 @@ so backend developers can interact with NaaS using a clean developer-friendly AP
 ```bash
 npm install @naas/server-sdk
 ```
-````
 
 ---
 
@@ -198,7 +197,38 @@ await naas.notifications.getUnreadCountByRecipientId({
 
 The SDK normalizes backend API errors into SDK-specific error classes.
 
+Current supported SDK errors:
 
+* `AuthenticationError`
+* `QuotaExceededError`
+* `BaseAPIError`
+
+Example:
+
+```ts
+import {
+    AuthenticationError,
+    QuotaExceededError
+} from "@naas/server-sdk";
+
+try{
+
+    await naas.notifications.createNotification(...);
+
+}
+catch(error){
+
+    if(error instanceof AuthenticationError)
+    {
+        console.log("Invalid API key");
+    }
+
+    if(error instanceof QuotaExceededError)
+    {
+        console.log("Monthly quota exceeded");
+    }
+}
+```
 
 ---
 
