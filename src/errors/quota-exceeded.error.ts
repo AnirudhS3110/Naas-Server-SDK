@@ -6,6 +6,6 @@ export class QuotaExceededError extends BaseApiError
     {
         super(message,429)
         this.name = "QuotaExceededError";
-        Object.setPrototypeOf(this,BaseApiError);
+        Object.setPrototypeOf(this,QuotaExceededError.prototype);
     }
 }

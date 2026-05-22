@@ -5,7 +5,7 @@ export class ValidationError extends BaseApiError
     constructor(message:string)
     {
         super(message,422)
-        this.name = "QuotaExceededError";
-        Object.setPrototypeOf(this,BaseApiError);
+        this.name = "ValidatorError";
+        Object.setPrototypeOf(this,ValidationError.prototype);
     }
 }

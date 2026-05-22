@@ -1,7 +1,7 @@
 
-# NaaS Server SDK
+# NotifyFlow Server SDK
 
-Official Node.js SDK for interacting with the NaaS (Notifications as a Service) platform.
+Official Node.js SDK for interacting with the NotifyFlow (Notifications as a Service) platform.
 
 The SDK abstracts:
 - authentication
@@ -10,14 +10,14 @@ The SDK abstracts:
 - response parsing
 - error normalization
 
-so backend developers can interact with NaaS using a clean developer-friendly API.
+so backend developers can interact with NotifyFlow using a clean developer-friendly API.
 
 ---
 
 # Installation
 
 ```bash
-npm install @naas/server-sdk
+npm install @notifyflow/server-sdk
 ```
 
 ---
@@ -25,11 +25,11 @@ npm install @naas/server-sdk
 # Quick Start
 
 ```ts
-import { Naas } from "@naas/server-sdk";
+import { NotifyFlowServer } from "@notifyflow/server-sdk";
 
-const naas = new Naas("YOUR_API_KEY");
+const server = new NotifyFlowServer("YOUR_API_KEY");
 
-await naas.notifications.createNotification({
+await server.notifications.createNotification({
     recepientId:"recipient_123",
     title:"Order Placed",
     body:"Your order has been placed successfully",
@@ -51,16 +51,16 @@ Resources
    ↓
 HttpClient
    ↓
-NaaS Backend APIs
+NotifyFlow Backend APIs
 ```
 
 ---
 
 # Core Concepts
 
-## Naas Client
+## NotifyFlow Client
 
-The `Naas` class is the main SDK runtime container.
+The `NotifyFlow` class is the main SDK runtime container.
 
 It initializes:
 
@@ -71,7 +71,7 @@ It initializes:
 Example:
 
 ```ts
-const naas = new Naas("API_KEY");
+const server = new NotifyFlowServer("API_KEY");
 ```
 
 ---
@@ -83,7 +83,7 @@ Resources represent grouped platform capabilities.
 Example:
 
 ```ts
-naas.notifications
+notifyflow.notifications
 ```
 
 Resources do NOT directly handle:
@@ -116,7 +116,7 @@ This creates a centralized transport layer shared across all SDK resources.
 The SDK currently exposes:
 
 ```ts
-naas.notifications
+server.notifications
 ```
 
 ---
@@ -124,7 +124,7 @@ naas.notifications
 # Create Notification
 
 ```ts
-await naas.notifications.createNotification({
+await server.notifications.createNotification({
     recepientId:"recipient_123",
     title:"Message Received",
     body:"You have received a new message",
@@ -140,7 +140,7 @@ await naas.notifications.createNotification({
 # Get Notifications
 
 ```ts
-await naas.notifications.getNotifications({
+await server.notifications.getNotifications({
     recipientId:"recipient_123",
     limit:10,
     page:0,
@@ -153,7 +153,7 @@ await naas.notifications.getNotifications({
 # Mark Notification As Read
 
 ```ts
-await naas.notifications.markNotificationAsReadById({
+await server.notifications.markNotificationAsReadById({
     notificationId:"notification_123"
 });
 ```
@@ -163,7 +163,7 @@ await naas.notifications.markNotificationAsReadById({
 # Mark Multiple Notifications As Read
 
 ```ts
-await naas.notifications.markMultipleNotificationsAsReadById({
+await server.notifications.markMultipleNotificationsAsReadById({
     notificationIds:[
         "notif_1",
         "notif_2"
@@ -176,7 +176,7 @@ await naas.notifications.markMultipleNotificationsAsReadById({
 # Mark All Notifications As Read
 
 ```ts
-await naas.notifications.markAllNotificationsAsReadByRecipientId({
+await server.notifications.markAllNotificationsAsReadByRecipientId({
     recipientId:"recipient_123"
 });
 ```
@@ -186,7 +186,7 @@ await naas.notifications.markAllNotificationsAsReadByRecipientId({
 # Get Unread Count
 
 ```ts
-await naas.notifications.getUnreadCountByRecipientId({
+await server.notifications.getUnreadCountByRecipientId({
     recipientId:"recipient_123"
 });
 ```
@@ -209,11 +209,11 @@ Example:
 import {
     AuthenticationError,
     QuotaExceededError
-} from "@naas/server-sdk";
+} from "@notifyflow/server-sdk";
 
 try{
 
-    await naas.notifications.createNotification(...);
+    await server.notifications.createNotification(...);
 
 }
 catch(error){
@@ -234,7 +234,7 @@ catch(error){
 
 # Smart Orchestration
 
-When `smartOrchestration` is enabled, the NaaS backend automatically selects the best delivery channel based on:
+When `smartOrchestration` is enabled, the NotifyFlow backend automatically selects the best delivery channel based on:
 
 * recipient presence
 * activity status

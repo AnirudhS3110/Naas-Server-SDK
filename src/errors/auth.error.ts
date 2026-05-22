@@ -6,6 +6,6 @@ export class AuthenticationError extends BaseApiError
     {
         super(message,401)
         this.name = "AuthenticationError";
-        Object.setPrototypeOf(this,BaseApiError);
+        Object.setPrototypeOf(this,AuthenticationError.prototype);
     }
 }

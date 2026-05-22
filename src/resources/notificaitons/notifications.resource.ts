@@ -16,9 +16,9 @@ export class NotificationsResource
         return params.toString();
     }
 
-    async createNotification(body:CreateNotificationBody)
+    async send(body:CreateNotificationBody)
     {
-        await this.httpClient.post(`${this.base}/`,body)
+        return await this.httpClient.post(`${this.base}/`,body)
     }
 
     async getNotifications(query:GetNotificationQuery)
